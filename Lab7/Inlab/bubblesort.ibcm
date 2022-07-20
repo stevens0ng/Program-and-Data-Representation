@@ -1,4 +1,3 @@
-
 C00A    000	           jmp	       skip around the variables
 0000	001	index	   dw 0        int index 		
 0070    002     array      dw 0        int array[] (array base starts at 40) 
