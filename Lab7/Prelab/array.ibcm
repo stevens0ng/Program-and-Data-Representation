@@ -61,7 +61,3 @@ B000    038      nop                   placeholder to store the array elements b
 4001    03C      store     index 
 C032    03D                jmp loop    jumps back to the address at 1F to begin the loop again 
 0000    03E      halt      End of program 
-STUDENT
-Steven Song
-AUTOGRADER SCORE
-10.0 / 10.0
