@@ -1,0 +1,27 @@
+C006	000	jmp     allows you to skip variables/lines   
+0001	001	dw	one
+0000	002	dw	iterator  
+3000	003	loadit 3000
+4000	004	storeit 4000
+001A	005	dw      size (runs all the way to the end of the program) 
+301A	006     zero 	every single time you iterate through and print out a line, you have to reset the iterator to  
+4002	007	store	you bring up the 0 that is halt and then you set the iterator to 0  
+3005	008	load	loads the size of the program
+6002    009     sub     iterator (iterator--) You have to make sure that (SIZE - ITERATOR) > 0) so that it doesn't print out every line (you don't want to print out the empty lines) 
+D01A	00A	jmpe    if your accumulator is 0, then jump to halt
+C00F    00B     jmp     allows you to skip over the empty lines 
+0000    00C             line break 
+0000    00D             line break 
+0000    00E             line break 
+3003	00F	load    loadit	
+5002	010     add     iterator 	 
+4012	011	store   stores the doit (references the address on 012)
+0000	012	doit 
+1800	013	printH  prints out each of the commands  
+3002	014     load    accumulator = iterator      
+5001	015     add     one (iterator++) 
+4002	016     store   iterator 
+3005	017     load    size
+6002    018     sub     iterator (iterator--)
+C008    019     jmp     jumps to the address on line 08
+0000	01A     halt    halts the program 
