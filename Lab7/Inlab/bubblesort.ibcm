@@ -1,0 +1,105 @@
+
+C00A    000	           jmp	       skip around the variables
+0000	001	index	   dw 0        int index 		
+0070    002     array      dw 0        int array[] (array base starts at 40) 
+000A    003     size       dw 0        int size (for forwards and backwards array)  
+0000    004     zero       dw 0        number 0 (you have to hard code the number 0) 
+0001	005	one	   dw 1        number 1 (used for add/subtract) (you have to hard code the number 1)
+0000    006                Empty Line  (used for a blank space) 
+4000    007     storeit    dw 4000     variable used for storeit
+0009    008     nine                                         
+3000    009     loadit     dw 3000     variable used for loadit 
+B000    00A                temp                  
+B000    00B                j-1 value                                                                                              
+B000    00C   		   j                                                      
+B000    00D                blank line  (empty line)                          
+3003    00E     loop       load size   (if index > size) 
+6001    00F                sub i       (index--) subtract the index
+E01D    010                jmpl xit    jump to the address if the accum < 0   
+D01D    011                jmpe xit    jump to the address if the accum = 0     
+3007    012                loadit      dw3000 loadit reads in the array forwards
+5002    013                add array 
+5001    014                add index 
+4017    015     store                  4000 + array + index 
+1000    016     readH      reads in the array size from user input  
+B000    017     nop                    placeholder to store the array elements forward for each index
+B000	018                Empty space ======================================= 
+3001    019                load index  
+5005    01A                add one     index++ 
+4001    01B                store index
+C00E    01C                jumps back to the loop
+B000    01D		   Extra space =======================================
+3004    01E                load zero   0 
+4001    01F                store index (set index equal to 0)
+3003    020     loop1      load size
+6001    021                sub i       (index--) subtract the index from the sizeo
+E055    022                jmpl xit    jump to the address if the accum < 0
+D055    023                jmpe xit    jump to the address if the accum = 0
+B000    024
+3008    025     load nine
+400C    026     store      j
+300C    027     loop2      load        j
+6001    028     sub i      (index--) subtract the index
+E051    029     jmpl loop  jump to the address if the accum < 0
+D051    02A     jmpe loop  jump to the address if the accum = 0
+B000    02B
+3009    02C                loadit
+5002    02D                add array
+500C    02E                add j
+4030    02F     store 
+B000    030     nop
+400A    031     store temp
+B000    032
+3009    033                loadit
+5002    034                add array
+500C    035                add j
+6005    036                sub one
+4038    037     store
+B000    038     nop before
+400B    039     store before
+B000    03A     empty line
+600A    03B     sub temp
+E04D    03C                jmpl loop2    jump to the address if the accum < 0
+D04D    03D                jmpe loop2
+B000    03E     empty line
+3007    03F     storeit
+5002    040     add array
+500C    041     add j
+4044    042     store command
+300B    043     load before
+B000    044     nop
+B000    045     empty line
+3007    046     storeit
+5002    047     add array
+500C    048     add j
+6005    049     sub one
+404C    04A     store command
+300A    04B     load temp
+B000    04C     nop
+300C    04D     load j
+6005    04E     sub one    j--
+400C    04F     store j
+C027    050     jmp back to loop2
+3001    051     load index
+5005    052     add one index++
+4001    053     store index
+C020    054     jmp back to loop1
+3004    055     load zero 
+4001    056     store index (set index equal to 0) 
+3003    057     loop       load size   (if index > size)     
+6001    058     sub i      (index--) subtract the index from the size
+E066    059     jmpl xit   jump to the address if the accum < 0   
+D066    05A     jmpe xit   jump to the address if the accum = 0     
+3009    05B     loadit     dw3000 loadit reads in the array forwards
+5002    05C     add array 
+5001    05D     add index 
+405F    05E     store      3000 + array + index 
+B000    05F     nop        placeholder to store the array elements forward for each index
+1800	060     printH  
+3001    061     load index  
+5005    062     add one    index++ 
+4001    063     store index
+C057    064     jumps back to the loop
+B000    065     Extra space =======================================
+B000    066
+0000    067     halt       End of program 
